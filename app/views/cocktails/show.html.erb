@@ -1,0 +1,16 @@
+<h1><%= @cocktail.name %></h1>
+<ul class="list-unstyled pad20">
+    <% @cocktail.doses.each do |d| %>
+    <li>
+      <i class="fa fa-glass"></i> <strong> <%= d.ingredient.name %> </strong>
+      <%= link_to "Delete", dose_path(d), class: "btn btn-danger btn-xs", method: :delete  %>
+    </li>
+    <p class="pad10"><%= d.description %></p>
+    <% end %>
+  </ul>
+
+
+<br>
+<%= link_to 'Add a new dose', new_cocktail_dose_path(@cocktail) %>
+<btn>
+<%= link_to "Back to list", cocktails_path, class: 'btn btn-primary'  %>
