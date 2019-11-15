@@ -30,9 +30,15 @@ Ingredient.destroy_all
 
 puts 'Creating ingredients...'
 
-10.times do
+beer = []
+20.times do
+  beer << Faker::Beer.hop
+end
+beer.uniq!
+
+beer.each do |name|
   my_ingredients = Ingredient.new(
-    name: Faker::Beer.hop
+    name: name
   )
   my_ingredients.save!
 end
