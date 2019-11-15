@@ -1,6 +1,7 @@
 <h1><%= @cocktail.name %></h1>
 <ul class="list-unstyled pad20">
     <% @cocktail.doses.each do |d| %>
+    <%= cl_image_tag d.photo.key, height: 400, width: 800, crop: :fill %>
     <li>
       <i class="fa fa-glass"></i> <strong> <%= d.ingredient.name %> </strong>
       <%= link_to "Delete", dose_path(d), class: "btn btn-danger btn-xs", method: :delete  %>
