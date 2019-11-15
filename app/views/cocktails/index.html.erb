@@ -1,25 +1,28 @@
 <div class="navbar" style="font-size: 250%">
-  <div class="logo">🍸</div>
-  <div class="menu"><%= link_to 'Add a new cocktail', new_cocktail_path, class: 'btn btn-flat'%></div>
+  <div class="logo"><%= link_to '🍸', cocktails_path, class: 'logo'%></div>
+  <div class="menu"><%= link_to 'Add a new cocktail', new_cocktail_path, class: 'btn btn-warning'%></div>
 </div>
+
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1539788292313-547a2c372229?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80);">
   <div class="container">
     <h1><strong>Cocktails</strong> get you <strong>drunk</strong>!</h1>
     <p>Choose a drink and see how its made.</p>
   </div>
 </div>
-
-
-
-
-
-
-<h2>Pick your poison...</h2>
-<div class="cards">
-<% @cocktails.each do |cock| %>
-<div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3))">
-    <%= link_to cock.name, cocktail_path(cock) %>
-  </div>
-<% end %>
+<div>
+  <h2 class="tag">Pick your poison</h2>
 </div>
-
+<div class="container">
+<% @cocktails.each do |cock| %>
+<% if cock.photo.attached? %>
+<div class="card-product">
+   <%= cl_image_tag cock.photo.key, height: 300, width: 400, crop: :fill %>
+  <div class="card-product-infos">
+    <h2><%= link_to cock.name, cocktail_path(cock) %></h2>
+    <p>Product description with <strong>relevant info</strong> only.</p>
+     <% else %>
+    <% end -%>
+     </div>
+  </div>
+<% end -%>
+</div>

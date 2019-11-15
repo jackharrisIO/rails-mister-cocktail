@@ -1,16 +1,21 @@
-<h1><%= @cocktail.name %></h1>
+<div class="navbar" style="font-size: 250%">
+  <div class="logo"><%= link_to '🍸', cocktails_path, class: 'logo'%></div>
+  <div class="menu"><%= link_to 'Add a new cocktail', new_cocktail_path, class: 'btn btn-warning'%></div>
+</div>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @cocktail.photo.key, height: 300, width: 400, crop: :fill %>')">
 <ul class="list-unstyled pad20">
-    <% @cocktail.doses.each do |d| %>
-    <%= cl_image_tag d.photo.key, height: 400, width: 800, crop: :fill %>
-    <li>
+  <h1><%= @cocktail.name %></h1>
+</div>
+<div class="container">
+ <% @cocktail.doses.each do |d| %>
+    <li class="dose">
       <i class="fa fa-glass"></i> <strong> <%= d.ingredient.name %> </strong>
-      <%= link_to "Delete", dose_path(d), class: "btn btn-danger btn-xs", method: :delete  %>
     </li>
     <p class="pad10"><%= d.description %></p>
+    <%= link_to "Delete", dose_path(d), class: "btn btn-danger btn-xs", method: :delete  %>
     <% end %>
   </ul>
-
-
+</div>
 <br>
 <%= link_to 'Add a new dose', new_cocktail_dose_path(@cocktail) %>
 <btn>
